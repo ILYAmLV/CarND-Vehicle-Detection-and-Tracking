@@ -1,10 +1,9 @@
-
 # Self-Driving Car Engineer Nanodegree
 
 ## Vehicle Detection - Project 5
 
 <p align="center">
-    <img src="./output_images/heat_map.png" width="1000">
+    <img src="./output_images/heat_map1.png" width="1000">
 </p>
 
 
@@ -93,7 +92,7 @@ The **`extract_features`** function etracts the features returned by the **`bin_
   
 ### Training and testing the HOG Support Vector Classifier and the Color Histogram Support Vector Classifier
 
-After extracting HOG and color features from the **`car_images`** and **`noncar_images`** I test the accuracy of the SVC by comparing the predictions on labeled `X_train` data. Test Accuracy of HOG based SVC is 98.33% and the test Accuracy of Color Histogram based SVC is 98.59%.
+After extracting HOG and color features from the **`car_images`** and **`noncar_images`** I test the accuracy of the SVC by comparing the predictions on labeled `X_train` data. Test Accuracy of HOG based SVC is 97.38% and the test Accuracy of Color Histogram based SVC is 96.68%.
 
 
 ### Sliding Window Implementation
@@ -121,7 +120,7 @@ spatial_feat = True # Spatial features on or off
 hist_feat = True # Histogram features on or off
 hog_feat = True # HOG features on or off
 ```
-Test Accuracy of SVC is 99.32%
+Test Accuracy of SVC is 98.87%
 
 <p align="center">
     <img src="output_images/windows.png" width="600">
@@ -137,8 +136,11 @@ The **`add_heat`** function creates a map of positive "car" results found in an 
 
 ### Defining a function that can extract features using HOG sub-sampling and make predictions
 
-The **`find_cars`** function extracts the HOG and color features, scales them and then makes predictions. Using multiple scale values allows for more accurate predictions. I have combined scales of **`1.0, 1.5, 2.0`** and **`2.5`** with their own `ystart` and `ystop` values to lower the ammount of false-postive search boxes. 
+The **`find_cars`** function extracts the HOG and color features, scales them and then makes predictions. Using multiple scale values allows for more accurate predictions. I have combined scales of **`1.0, 1.5`** and **`2.0`** with their own `ystart` and `ystop` values to lower the ammount of false-postive search boxes. 
 
 ### Conclusion
 
-During the creation of this project I have learned a great deal about color spectrums, image gradients and support vector classifiers. Even though this method of image recognition is not likely to be used in vehicle detection due to it's incredebly slow processing speed it was a great learing tool for me due to its customability. In the future I would like to try using deep-learning for vehicle recognition, perhaps using the ["You only look once"](https://pjreddie.com/darknet/yolo/) method.
+1. During the creation of this project, I have learned a great deal about color spectrums, image gradients and support vector classifiers. Even though this method of image recognition is not likely to be used in vehicle detection due to it's incredibly slow processing speed it was a great learning tool for me due to its customizability. 
+2. In the future I would like to try using deep-learning for vehicle recognition, perhaps using the ["You only look once"](https://pjreddie.com/darknet/yolo/) method.
+3. The pipeline used in this project tends to do poorly when areas of the image darken by the presence of shadows. Classifying dark pixels as `cars`, creating false-positives. This issue could be resolved by adding more dark images to the `non-vehicle` dataset.
+4. For the purpose of this project, `xstart` and `xstop` could also be implemented as the left outer portion of the frame is mostly useless and creates a lot of false-positives.
